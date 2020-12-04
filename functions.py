@@ -39,3 +39,29 @@ def grab_screen(region=(0, 50, 794, 610)):
     img = cv2.cvtColor(img, cv2.COLOR_RGBA2RGB)
 
     return img
+
+
+def crop_bottom_minimap(game_frame):
+    return game_frame[:400, :]
+
+def roi(game_frame):
+    points = np.array([[0, 400], [0, 325], [290, 305], [550, 305], [795, 325], [795, 400]], np.int32)
+    
+    mask = np.zeros_like(game_frame)
+
+    cv2.fillPoly(mask, [points], (255, 255, 255))
+
+    masked = cv2.bitwise_and(game_frame, mask)
+
+    return masked
+
+def perspective_transform(game_frame):
+    pts1 = np.float32([[290, 305], [550, 305], [0, 400], [795, 400]])
+    pts2 = np.float32([[0, 0], [600, 0], [0, 600], [600, 600]])
+
+    matrix = cv2.getPerspectiveTransform(pts1, pts2)
+
+    transformed_frame = cv2.warpPerspective(game_frame, matrix, (600, 400))
+
+    return transformed_frame
+    
