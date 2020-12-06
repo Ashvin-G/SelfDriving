@@ -15,12 +15,12 @@ pygame.joystick.Joystick(0).init()
 
 DATADIR = "./Dataset/"
 
-f = open("log.csv", "w", newline="")
+f = open("log.csv", "a", newline="")
 writer = csv.writer(f)
 
 def main():
 
-    image_counter = 0
+    image_counter = 4802
 
     for i in range(5, 0, -1):
         print(i)

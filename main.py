@@ -9,6 +9,8 @@ from functions import perspective_transform
 
 import matplotlib.pyplot as plt
 
+import pyautogui
+
 
 
 def main():
@@ -18,20 +20,15 @@ def main():
     
     while True:
         game_frame = grab_screen()
-        game_frame = crop_bottom_minimap(game_frame)
-        roi_game_frame = roi(game_frame)
-        lane = perspective_transform(roi_game_frame)
+        lane = perspective_transform(game_frame)
        
 
-        cv2.imshow('roi', roi_game_frame)
-        cv2.imshow('lane', lane)
+        cv2.imshow('game_frame', game_frame)
         if cv2.waitKey(1) == 27:
             break
 
     cv2.destroyAllWindows()
-
     
-
 
 main()
 
