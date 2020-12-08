@@ -12,9 +12,9 @@ DATADIR = "../SelfDriving_Dataset/"
 
 def main():
 
-    A_counter = 0
-    W_counter = 0
-    D_counter = 0
+    A_counter = 10674
+    W_counter = 21641
+    D_counter = 14518
 
     for i in range(5, 0, -1):
         print(i)
@@ -22,7 +22,7 @@ def main():
     
     while True:
         game_frame = grab_screen()
-        
+        game_frame = cv2.cvtColor(game_frame, cv2.COLOR_BGR2GRAY)
         key_pressed = key_check()
 
         if key_pressed == 'A':
